@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.tryfi.android_challenge.R
 import kotlinx.coroutines.*
@@ -35,6 +36,14 @@ class MainFragment : Fragment(), CoroutineScope {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+        viewModel.progress.observe(viewLifecycleOwner, Observer<Int> { progress ->
+
+        })
+
+        viewModel.isPlaying.observe(viewLifecycleOwner, Observer<Boolean> { isPlaying ->
+
+        })
 
         // views
         val playPauseButton = view.findViewById<ImageButton>(R.id.playPauseButton)
