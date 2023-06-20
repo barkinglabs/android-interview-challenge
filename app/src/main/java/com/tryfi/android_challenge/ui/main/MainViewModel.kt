@@ -37,7 +37,7 @@ class MainViewModel : ViewModel() {
                 val nextFrameIndex = (lastFrameIndex + 1).takeIf { it < _frameCount } ?: 0
 
                 _progress.postValue(nextFrameIndex)
-                delay(20L)
+                delay(40L)
             }
         }
     }
@@ -48,7 +48,7 @@ class MainViewModel : ViewModel() {
     }
     fun toggleIsPlaying() {}
 
-    fun setProgress(value: Int) {}
+    fun setCurrentFrame(value: Int) {}
 
     fun setSpeed(speed: Float) {}
 
