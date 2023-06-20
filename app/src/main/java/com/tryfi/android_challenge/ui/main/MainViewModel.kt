@@ -18,12 +18,12 @@ class MainViewModel : ViewModel() {
     private val _isPlaying: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
     val isPlaying: LiveData<Boolean> = _isPlaying
 
-    private val _progress: MutableLiveData<Int> = MutableLiveData<Int>()
-    val progress: LiveData<Int> = _progress
+    private val _currentFrame: MutableLiveData<Int> = MutableLiveData<Int>()
+    val currentFrame: LiveData<Int> = _currentFrame
 
     init {
         _isPlaying.value = false
-        _progress.value = 10
+        _currentFrame.value = 10
     }
 
     fun setNumberOfFrames(nFrames: Int) {
@@ -33,10 +33,10 @@ class MainViewModel : ViewModel() {
         _isPlaying.value = true
         _playJob = viewModelScope.launch {
             while (isActive) {
-                val lastFrameIndex = _progress.value ?: 0
+                val lastFrameIndex = _currentFrame.value ?: 0
                 val nextFrameIndex = (lastFrameIndex + 1).takeIf { it < _frameCount } ?: 0
 
-                _progress.postValue(nextFrameIndex)
+                _currentFrame.postValue(nextFrameIndex)
                 delay(40L)
             }
         }

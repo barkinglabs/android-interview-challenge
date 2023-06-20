@@ -45,8 +45,8 @@ class MainFragment : Fragment(), CoroutineScope {
 
         viewModel.setNumberOfFrames(animationDrawable.numberOfFrames)
 
-        viewModel.progress.observe(viewLifecycleOwner) { progress ->
-            animationDrawable.selectDrawable(progress)
+        viewModel.currentFrame.observe(viewLifecycleOwner) { currentFrame ->
+            animationDrawable.selectDrawable(currentFrame)
         }
     }
 
